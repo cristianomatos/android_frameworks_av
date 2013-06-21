@@ -305,13 +305,13 @@ uint32_t Visualizer::initCaptureSize()
     union {
         uint32_t buf32[sizeof(effect_param_t) / sizeof(uint32_t) + 2];
         effect_param_t p;
-    }
+    };
 
     p.psize = sizeof(uint32_t);
     p.vsize = sizeof(uint32_t);
     int32_t const vpcs = VISUALIZER_PARAM_CAPTURE_SIZE;
     memcpy(&p.data, &vpcs, sizeof(vpcs));
-    status_t status = getParameter(&p); 
+    status_t status = getParameter(&p);
 
     if (status == NO_ERROR) {
         status = p.status;
@@ -319,7 +319,7 @@ uint32_t Visualizer::initCaptureSize()
 
     uint32_t size = 0;
     if (status == NO_ERROR) {
-        memcpy(&size, &p.data+sizeof(int32_t), sizeof(int32_t)); 
+        memcpy(&size, &p.data+sizeof(int32_t), sizeof(int32_t));
     }
     mCaptureSize = size;
 
